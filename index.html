@@ -1,6 +1,54 @@
-<h1>Color Picker</h1>
+<div id="mainContent">
+    <h1>Color Picker</h1>
 
-<ul>
-    <li><p>GitHub Repository: <a>https://github.com/Bkain1/color-picker</a></p></li>
-    <li><p>Pivotal Tracker Project: <a>https://www.pivotaltracker.com/n/projects/2555163</a></p></li>
-</ul>
+    <form>
+        <h2>RGB to Maxwell Hues Converter</h2>
+        <p>Red value:</p> <input id="red">
+        <p>Green value:</p> <input id="green">
+        <p>Blue value:</p> <input id="blue">
+        <button type="button" onclick="convert()">Convert</button>
+
+        <p id="outputMessage"></p>
+    </form>
+
+    <ul>
+        <li><p>GitHub Repository: <a>https://github.com/Bkain1/color-picker</a></p></li>
+        <li><p>Pivotal Tracker Project: <a>https://www.pivotaltracker.com/n/projects/2555163</a></p></li>
+    </ul>
+</div>
+
+
+
+<script>
+    function convert() {
+
+        // Get the values for the input fields
+        let redText = document.getElementById("red").value;
+        let greenText = document.getElementById("green").value;
+        let blueText = document.getElementById("blue").value;
+        let outputText;
+
+        // set min and max
+        let min = 0;
+        let max = 255;
+
+        // Test if input is a number
+        if (!isNaN(redText) || !isNaN(greenText) || !isNaN(blueText)) {
+
+            // Test if numbers are between min and max
+            if (redText > min && redText < max && greenText > min && greenText < max && blueText > min && blueText < max) { 
+            outputText = "output passes";
+
+            } else { 
+
+                // number is not between min and max
+                outputText = "Please enter a value between " + min + " and " + max + " into all fields.";
+            }
+        } else {
+            // input is not a number
+            outputText = "Please enter a valid number into all fields."
+        }
+
+        document.getElementById("outputMessage").innerHTML = outputText;
+    }
+</script>
