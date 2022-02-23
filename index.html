@@ -11,6 +11,8 @@
         <button type="button" onclick="convert()">Convert</button>
 
         <p id="outputMessage"></p>
+        <br>
+        <div id="colorBox"></div>
     </form>
 
     <ul>
@@ -59,15 +61,27 @@
 
             outputText = "rho: " + rho + "<br>gamma: " + gamma + "<br>beta: " + beta;
 
+            visualize(red, green, blue);
+
             } else { 
                 // number is not between min and max
                 outputText = "Please enter a value between " + min + " and " + max + " into all fields.";
             }
         } else {
             // input is not a number
-            outputText = "Please enter a valid number into all fields."
+            outputText = "Please enter a valid number into all fields.";
         }
 
         document.getElementById("outputMessage").innerHTML = outputText;
+    }
+
+    function visualize(red, green, blue) {
+        let color = "rgb(" + red + ", " + green + ", " + blue + ")";
+        console.log(color);
+
+        document.getElementById("colorBox").style.backgroundColor = color;
+        document.getElementById("colorBox").style.height = "5em";
+        document.getElementById("colorBox").style.width = "5em";
+        document.getElementById("colorBox").style.border = "solid black";
     }
 </script>
