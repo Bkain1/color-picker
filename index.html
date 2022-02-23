@@ -6,14 +6,16 @@
         <p>Red value:</p> <input id="red">
         <p>Green value:</p> <input id="green">
         <p>Blue value:</p> <input id="blue">
+        <br>
+        <br>
         <button type="button" onclick="convert()">Convert</button>
 
         <p id="outputMessage"></p>
     </form>
 
     <ul>
-        <li><p>GitHub Repository: <a>https://github.com/Bkain1/color-picker</a></p></li>
-        <li><p>Pivotal Tracker Project: <a>https://www.pivotaltracker.com/n/projects/2555163</a></p></li>
+        <li><p>GitHub Repository: <a href="https://github.com/Bkain1/color-picker">https://github.com/Bkain1/color-picker</a></p></li>
+        <li><p>Pivotal Tracker Project: <a href="https://www.pivotaltracker.com/n/projects/2555163">https://www.pivotaltracker.com/n/projects/2555163</a></p></li>
     </ul>
 </div>
 
@@ -32,15 +34,32 @@
         let min = 0;
         let max = 255;
 
+        let rho = 0;
+        let gamma = 0;
+        let beta = 0;
+
         // Test if input is a number
         if (!isNaN(redText) || !isNaN(greenText) || !isNaN(blueText)) {
 
+            // parseInt variables to eliminate floating point errors
+            let red = parseInt(redText);
+            let green = parseInt(greenText);
+            let blue = parseInt(blueText);
+            
+
             // Test if numbers are between min and max
-            if (redText > min && redText < max && greenText > min && greenText < max && blueText > min && blueText < max) { 
-            outputText = "output passes";
+            if (red >= min && red <= max && green >= min && green <= max && blue >= min && blue <= max) { 
+            
+            // Calculation to find rho, gamma, and beta
+            let formula = 1 / (red + blue + green);
+
+            rho = formula * red;
+            gamma = formula * green;
+            beta = formula * blue;
+
+            outputText = "rho: " + rho + "<br>gamma: " + gamma + "<br>beta: " + beta;
 
             } else { 
-
                 // number is not between min and max
                 outputText = "Please enter a value between " + min + " and " + max + " into all fields.";
             }
